@@ -1,6 +1,10 @@
 .profile__about-me {
-    margin: 0 auto 0 30px;
+    max-width: 318px;
+    margin: 0;
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
