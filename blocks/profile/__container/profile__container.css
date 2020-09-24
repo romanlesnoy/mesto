@@ -3,8 +3,17 @@
     align-items: center;
 }
 
-@media screen and (max-width: 540px) {
+
+@media screen and (max-width: 912px) {
     .profile__container {
-        flex-direction: column;
+        margin-left: 30px;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .profile__container {
+        margin-left: 0;
+        flex-direction: column;
+        justify-content: center;
+    }
+} 

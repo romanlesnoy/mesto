@@ -5,3 +5,18 @@
     border: 2px solid #FFF;
     align-self: center;
 }
+
+@media screen and (max-width: 912px) {
+    .profile__add-btn {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile__add-btn {
+        margin-top:  36px;
+        margin-right: 0px;
+        width: 282px;
+        background:#000 url(../../../images/icons/Add_Button_large.svg) no-repeat center center;
+    }
+}

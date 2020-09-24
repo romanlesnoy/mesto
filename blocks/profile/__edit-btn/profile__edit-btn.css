@@ -6,3 +6,13 @@
     border: 1px solid #FFF;
     align-self: center;
 }
+
+@media screen and (max-width: 768px) {
+    .profile__edit-btn {
+        width: 16px;
+        height: 16px;
+        margin-top: 5px;
+        margin-left: 9px;
+    }
+    }
+}
