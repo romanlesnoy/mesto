@@ -1,0 +1,18 @@
+.popup__input-field {
+    width: 100%;
+    max-width: 358px;
+    opacity: 0.2;
+    border: none;
+    border-bottom: 1px solid #000;
+    margin-bottom: 30px;
+}
+
+.popup__input-field:last-of-type {
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 768px) {
+    .popup__input-field:last-of-type  {
+        margin-bottom: 45px;
+    }
+}
