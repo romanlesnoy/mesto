@@ -5,7 +5,14 @@
     background:#000 url(../../../images/icons/Edit_Button.svg) no-repeat center center;
     border: 1px solid #FFF;
     align-self: center;
+    cursor: pointer;
 }
+
+.profile__edit-btn:hover {
+    opacity: .8;
+    transition: .2s, ease-in-out, linear;
+}
+
 
 @media screen and (max-width: 768px) {
     .profile__edit-btn {
