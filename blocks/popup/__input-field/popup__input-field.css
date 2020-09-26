@@ -1,10 +1,13 @@
 .popup__input-field {
     width: 100%;
     max-width: 358px;
-    opacity: 0.2;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgba(0,0,0, .2);
     margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
 }
 
 .popup__input-field:last-of-type {
