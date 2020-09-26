@@ -6,7 +6,6 @@
     height: 100%;
     max-width: 41px;
     max-height: 41px;
-    transform: rotate(90deg);
     background: url(../../../images/icons/Close_Icon.svg) no-repeat center center;
     border: none
 }
@@ -21,7 +20,6 @@
     .popup__close-btn  {
         top: -40px;
         right: 0;
-        max-width: 26px;
-        max-height: 26px;
+        transform: scale(.64);
     }
 }
