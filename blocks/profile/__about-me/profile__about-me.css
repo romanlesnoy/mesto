@@ -1,5 +1,6 @@
 .profile__about-me {
-    max-width: 318px;
+    min-width: 215px;
+    max-width: 550px;
     margin: 0;
     font-size: 18px;
     line-height: 22px;
@@ -14,6 +15,9 @@
     .profile__about-me  {
         font-size: 14px;
         line-height: 17px;
+        max-width: 280px;
+        min-width: 200px;
+        text-align: center;
     }
     
 }

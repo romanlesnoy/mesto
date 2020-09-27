@@ -1,7 +1,8 @@
 .profile__add-btn {
     width: 150px;
     height: 50px;
-    background:#000 url(../../../images/icons/Add_Button.svg) no-repeat center center;
+    background: #000 url(../../../images/icons/Add_plus_button.svg) no-repeat center center;
+    background-size: 22px;
     border: 2px solid #FFF;
     align-self: center;
     cursor: pointer;
@@ -23,6 +24,6 @@
         margin-top:  36px;
         margin-right: 0px;
         width: 282px;
-        background:#000 url(../../../images/icons/Add_Button_large.svg) no-repeat center center;
+        background-size: 16px;
     }
 }
