@@ -6,3 +6,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Mesto</title>
 </head>
+
+<body class="page">
+
+    <header class="header"> 
+        <img class="header__logo" src="./images/icons/Mesto-logo.svg" alt="Логотип проект Место">
+    </header>
+
+    <section class="popup">
+        <form class="popup__form">
+            <button class="popup__close-btn" type="button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <input type="text" class="popup__field-name popup__input-field">
+            <input type="text" class="popup__field-about-me popup__input-field">
+            <button class="popup__save-btn" type="submit">Сохранить</button>
+        </form>
+    </section>
+
+    <main>
+        <section class="profile">
+
+            <div class="profile__container">
+                <img class="profile__avatar" src="./images/image-1.png" alt="Фотопортрет Жака-Ива Кусто">
+                <div class="profile__info">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-btn" type="button"></button>
+                    <p class="profile__about-me">Исследователь океана</p>
+                </div>
+            </div>
+
+            <button class="profile__add-btn" type="button"></button>
+
+        </section>
+
+        <section class="elements">
+            <div class="elements__figure">
+                <img class="elements__image" src="/images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
+                <div class="elements__caption-container">
+                    <h2 class="elements__caption">Карачаевск</h2>
+                    <button class="elements__like-btn"></button>
+                </div>
+            </div>
+
+            <div class="elements__figure">
+                <img class="elements__image" src="/images/kirill-pershin-1404681-unsplash.jpg" alt="Эльбрус">
+                <div class="elements__caption-container">
+                    <h2 class="elements__caption">Эльбрус</h2>
+                    <button class="elements__like-btn"></button>
+                </div>
+            </div>
+
+            <div class="elements__figure">
+                <img class="elements__image" src="/images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+                <div class="elements__caption-container">
+                    <h2 class="elements__caption">Домбай</h2>
+                    <button class="elements__like-btn"></button>
+                </div>
+            </div>
+
+            <div class="elements__figure">
+                <img class="elements__image" src="/images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+                <div class="elements__caption-container">
+                    <h2 class="elements__caption">Домбай</h2>
+                    <button class="elements__like-btn"></button>
+                </div>
+            </div>
+
+            <div class="elements__figure">
+                <img class="elements__image" src="/images/kirill-pershin-1404681-unsplash.jpg" alt="Эльбрус">
+                <div class="elements__caption-container">
+                    <h2 class="elements__caption">Эльбрус</h2>
+                    <button class="elements__like-btn"></button>
+                </div>
+            </div>
+
+            <div class="elements__figure">
+                <img class="elements__image" src="/images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
+                <div class="elements__caption-container">   
+                    <h2 class="elements__caption">Карачаево-Черкессия</h2>
+                    <button class="elements__like-btn"></button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <h3 class="footer__copyright">&#169; 2020 Mesto Russia</h3>
+    </footer>
+    <script src="./scripts/index.js"></script>
+</body>
