@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-font-face {
-=======
 @font-face {
->>>>>>> develop
     font-family: Inter;
     font-family: 'Inter';
     font-style:  normal;
@@ -12,7 +8,7 @@ font-face {
          url(../fonts/Inter-Black.woff2);
   }
   
-  @font-face {
+@font-face {
     font-family: Inter;
     font-style:  normal;
     font-weight: 500;
@@ -21,7 +17,7 @@ font-face {
          url(../fonts/Inter-Medium.woff2);
   }
   
-  @font-face {
+@font-face {
     font-family: Inter;
     font-style:  normal;
     font-weight: 400;
