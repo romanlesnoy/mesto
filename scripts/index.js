@@ -1,5 +1,3 @@
-console.log ('hello world!');
-
 let openPopupButton = document.querySelector('.profile__edit-btn');
 let closePopupButton = document.querySelector('.popup__close-btn');
 let popup = document.querySelector('.popup');
