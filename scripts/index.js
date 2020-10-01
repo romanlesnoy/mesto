@@ -5,15 +5,19 @@ let popup = document.querySelector('.popup');
 let currentProfileName = document.querySelector('.profile__name');
 let currentAboutMe = document.querySelector('.profile__about-me');
 
-let inputProfileName = document.querySelector('.popup__field-name');
-let inputAboutMe = document.querySelector('.popup__field-about-me');
+let inputProfileName = document.querySelector('.popup_input-name');
+let inputAboutMe = document.querySelector('.popup_input-about-me');
 
 let formElement = document.querySelector('.popup__form');
 
 function popupToggle () {
     popup.classList.toggle('popup_opened'); 
+    if (popup.classList.contains('popup_opened')) {
     inputProfileName.value = currentProfileName.textContent;
     inputAboutMe.value = currentAboutMe.textContent;
+    } else {
+        
+    }
 }
 
 function formSubmitHandler (evt) {
