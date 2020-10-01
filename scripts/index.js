@@ -12,7 +12,7 @@ let formElement = document.querySelector('.popup__form');
 
 function popupToggle () {
     popup.classList.toggle('popup_opened'); 
-    if (popup.classList.contains('popup_opened')) {
+    if (popup.classList.contains('popup_opened') == true) {
     inputProfileName.value = currentProfileName.textContent;
     inputAboutMe.value = currentAboutMe.textContent;
     } else {
