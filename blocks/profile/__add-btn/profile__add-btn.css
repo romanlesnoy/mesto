@@ -9,7 +9,7 @@
 }
 
 .profile__add-btn:hover {
-    opacity: .8;
+    opacity: .6;
     transition: .2s, ease-in-out, linear;
 }
 
