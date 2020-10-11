@@ -4,6 +4,7 @@
     padding: 0;
     border: none;
     background:#fff url('../../../images/icons/like_button.svg') no-repeat center center;
+    cursor: pointer;
 }
 
 .elements__like-btn:hover {

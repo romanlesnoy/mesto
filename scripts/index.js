@@ -1,5 +1,5 @@
 //Переменные popup редактирования профиля
-let popupEditProfile = document.querySelector('.popup_profile-edit');
+let popupEditProfile = document.querySelector('.popup__profile-edit');
 let openEditProfilePopupButton = document.querySelector('.profile__edit-btn');
 let closeEditProfilePopupButton = popupEditProfile.querySelector('.popup__close-btn');
 let formEditProfile = popupEditProfile.querySelector('.popup__form');
@@ -13,7 +13,7 @@ let inputProfileName = popupEditProfile.querySelector('.popup__input-name');
 let inputAboutMe = popupEditProfile.querySelector('.popup__input-about-me');
 
 //Переменные popup добавления карточки
-let popupAddCard = document.querySelector('.popup_add-card');
+let popupAddCard = document.querySelector('.popup__add-card');
 let openAddCardPopupButton = document.querySelector('.profile__add-btn');
 let closeAddCardPopupButton = popupAddCard.querySelector('.popup__close-btn');
 
@@ -113,3 +113,4 @@ closeAddCardPopupButton.addEventListener ('click', popupAddCardToggle);
 
 
 renderList();
+bindHandlers();
