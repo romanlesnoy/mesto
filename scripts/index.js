@@ -55,6 +55,9 @@ const cardName = popupAddCard.querySelector('.popup__input-card-name'); // ин�
 const cardImageLink = popupAddCard.querySelector('.popup__input-image-link'); // инпут ссылки на изображение
 const template = document.querySelector('.template'); // загатовка карточки
 
+const popupImage = document.querySelector('.popup__image');
+const popupCaption = document.querySelector('.popup__image-caption');
+
 //Функция открытия popup добавления карточки
 function popupAddCardToggle () {
     popupAddCard.classList.toggle('popup_opened'); 
@@ -94,7 +97,7 @@ const popupOpenImageToggle = () => {
 
 
 //создание карточки
-const getCards = (data) => {
+const getCard = (data) => {
     const card = template.content.cloneNode(true);
     const cardImage = card.querySelector('.elements__image');
     cardImage.src = data.link;
@@ -107,8 +110,6 @@ const getCards = (data) => {
     likeButton.addEventListener('click', likeFunction);//лайк
     removeButton.addEventListener('click', handlerRemove);//удаление
     cardImage.addEventListener('click', () => {
-        const popupImage = document.querySelector('.popup__image');
-        const popupCaption = document.querySelector('.popup__image-caption');
         popupImage.src = data.link;
         popupImage.alt = data.name;
         popupCaption.textContent = data.name;
@@ -119,14 +120,14 @@ const getCards = (data) => {
 
 //заполнение карточками из массива
 const renderList = () => {
-    const items = initialCards.map(element => getCards(element));
+    const items = initialCards.map(element => getCard(element));
     elements.append(...items)
 };
 
 //Получение данных о карточке из формыб отображение карточки
-addButton.addEventListener('click', () => {
+addButton.addEventListener('click', (event) => {
         event.preventDefault();
-        const item = getCards({
+        const item = getCard({
             name: cardName.value,
             link: cardImageLink.value
         });
