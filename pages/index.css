@@ -39,3 +39,6 @@
 @import url(../blocks/popup/__input-field/popup__input-field.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__input-field/_state_invalid/popup__input-field_state_invalid.css);
+@import url(../blocks/popup/__save-btn/_disable/popup__save-btn_disable.css);

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Project Mesto</title>
         <script src="./scripts/index.js" defer></script>
+        <script src="./scripts/validation.js" defer></script>
     </head>
 
     <body class="page">
@@ -16,7 +17,6 @@
 
     <main>
         <section class="profile">
-
             <div class="profile__container">
                 <img class="profile__avatar" src="./images/image-1.png" alt="Фотопортрет Жака-Ива Кусто">
                 <div class="profile__info">
@@ -25,14 +25,10 @@
                     <p class="profile__about-me">Исследователь океана</p>
                 </div>
             </div>
-
             <button class="profile__add-btn" type="button"></button>
-
         </section>
 
-        <section class="elements">
-            
-        </section>
+        <section class="elements"></section>
     </main>
 
     <footer class="footer">
@@ -40,21 +36,25 @@
     </footer>
 
     <section class="popup popup__profile-edit">
-        <form class="popup__form" name="profile-edit">
+        <form class="popup__form" name="profile-edit" novalidate>
             <button class="popup__close-btn" type="button"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <input type="text" class="popup__input-field popup__input-name" name="profilename">
-            <input type="text" class="popup__input-field popup__input-about-me" name="aboutme">
+            <input  id="user-name" class="popup__input-field popup__input-name" type="text" name="profilename" minlength="2" maxlength="40" required>
+            <span id="user-name-error" class="popup__input-error">4</span>
+            <input id="about"  class="popup__input-field popup__input-about-me" type="text" name="aboutme" minlength="2" maxlength="200" required>
+            <span id="about-error" class="popup__input-error">3</span>
             <button aria-label="Close" class="popup__save-btn" type="submit">Сохранить</button>
         </form>
     </section>
 
     <section class="popup popup__add-card">
-        <form class="popup__form" name="add-card">
+        <form class="popup__form" name="add-card" novalidate>
             <button class="popup__close-btn" type="button"></button>
             <h3 class="popup__title">Новое место</h3>
-            <input type="text" class="popup__input-field popup__input-card-name" name="card-name" placeholder="Название">
-            <input type="text" class="popup__input-field popup__input-image-link" name="image-link" placeholder="Ссылка на картинку">
+            <input id="card-name" class="popup__input-field popup__input-card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
+            <span id="card-name-error" class="popup__input-error">2</span>
+            <input id="image-link" class="popup__input-field popup__input-image-link" type="url" name="image-link" placeholder="Ссылка на картинку" required>
+            <span id="image-link-error" class="popup__input-error">1</span>
             <button aria-label="Close" class="popup__save-btn" type="submit">Создать</button>
         </form>
     </section>
@@ -62,8 +62,8 @@
     <section class="popup popup__image-preview">
         <figure class="popup__image-container">
             <button class="popup__close-btn" type="button"></button>
-            <img class="popup__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="">
-            <figcaption class="popup__image-caption">An elephant at sunset</figcaption>
+            <img class="popup__image" src="" alt="">
+            <figcaption class="popup__image-caption"></figcaption>
         </figure>
     </section>
 
