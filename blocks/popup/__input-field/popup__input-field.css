@@ -9,9 +9,3 @@
     font-size: 14px;
     color: #000;
 }
-
-@media screen and (max-width: 768px) {
-    .popup__input-field:last-of-type  {
-        margin-bottom: 45px;
-    }
-}

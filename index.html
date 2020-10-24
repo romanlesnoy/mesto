@@ -39,10 +39,10 @@
         <form class="popup__form" name="profile-edit" novalidate>
             <button class="popup__close-btn" type="button"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <input  id="user-name" class="popup__input-field popup__input-name" type="text" name="profilename" minlength="2" maxlength="40" required>
-            <span id="user-name-error" class="popup__input-error">4</span>
-            <input id="about"  class="popup__input-field popup__input-about-me" type="text" name="aboutme" minlength="2" maxlength="200" required>
-            <span id="about-error" class="popup__input-error">3</span>
+            <input  id="user-name" class="popup__input-field popup__input-name" type="text" name="profilename" minlength="2" maxlength="40" required autocomplete="off">
+            <span id="user-name-error" class="popup__input-error"></span>
+            <input id="about"  class="popup__input-field popup__input-about-me" type="text" name="aboutme" minlength="2" maxlength="200" required autocomplete="off">
+            <span id="about-error" class="popup__input-error"></span>
             <button aria-label="Close" class="popup__save-btn" type="submit">Сохранить</button>
         </form>
     </section>
@@ -51,10 +51,10 @@
         <form class="popup__form" name="add-card" novalidate>
             <button class="popup__close-btn" type="button"></button>
             <h3 class="popup__title">Новое место</h3>
-            <input id="card-name" class="popup__input-field popup__input-card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
-            <span id="card-name-error" class="popup__input-error">2</span>
-            <input id="image-link" class="popup__input-field popup__input-image-link" type="url" name="image-link" placeholder="Ссылка на картинку" required>
-            <span id="image-link-error" class="popup__input-error">1</span>
+            <input id="card-name" class="popup__input-field popup__input-card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required autocomplete="off">
+            <span id="card-name-error" class="popup__input-error"></span>
+            <input id="image-link" class="popup__input-field popup__input-image-link" type="url" name="image-link" placeholder="Ссылка на картинку" required autocomplete="off">
+            <span id="image-link-error" class="popup__input-error"></span>
             <button aria-label="Close" class="popup__save-btn" type="submit">Создать</button>
         </form>
     </section>
