@@ -57,7 +57,6 @@ const popupCaption = document.querySelector('.popup__image-caption'); // опи�
 
 //добавление добавляющая/убирающая popup_opened переданному popupу
 function togglePopup (popup) {
-    document.addEventListener('keydown', closePopupsByEsc);
     popup.classList.toggle('popup_opened');
 }
 
@@ -165,7 +164,9 @@ addButton.addEventListener('click', (event) => {
 
 function closePopupsByEsc (event) {
     const activePopup = document.querySelector('.popup_opened');
-    if (event.key === "Escape" && activePopup.classList.contains('popup_opened')){
+    if (activePopup === null){
+        return
+    } else if (event.key === "Escape" && activePopup.classList.contains('popup_opened')){
         togglePopup(activePopup);
     }
 }
@@ -173,6 +174,7 @@ function closePopupsByEsc (event) {
 openEditProfilePopupButton.addEventListener ('click', openPopupEditProfile);
 openAddCardPopupButton.addEventListener('click', openPopupAddCard);
 formEditProfile.addEventListener('submit', formSubmitHandler);
+document.addEventListener('keydown', closePopupsByEsc);
 
 window.onload = closePopups();
 window.onload = renderList();
