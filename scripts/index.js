@@ -1,7 +1,6 @@
 //Переменные popup редактирования профиля
 const popupEditProfile = document.querySelector('.popup__profile-edit');
 const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');
-const closeEditProfilePopupButton = popupEditProfile.querySelector('.popup__close-btn');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 
 //Значения профиля
@@ -15,12 +14,10 @@ const inputAboutMe = popupEditProfile.querySelector('.popup__input-about-me');
 //Переменные popup добавления карточки
 const popupAddCard = document.querySelector('.popup__add-card');
 const openAddCardPopupButton = document.querySelector('.profile__add-btn');
-const closeAddCardPopupButton = popupAddCard.querySelector('.popup__close-btn');
 const formAddCard= popupAddCard.querySelector('.popup__form');
 
 //Попап открытие картинки
 const popupOpenImage = document.querySelector('.popup__image-preview');
-const popupOpenImageCloseButton = popupOpenImage.querySelector('.popup__close-btn');
 
 const initialCards = [
     {
@@ -47,7 +44,7 @@ const initialCards = [
         name: 'Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-];
+]
 
 const elements = document.querySelector('.elements'); // секция с карточками
 const addButton = popupAddCard.querySelector('.popup__save-btn'); // кнопка добавления карточек
@@ -60,6 +57,7 @@ const popupCaption = document.querySelector('.popup__image-caption'); // опи�
 
 //добавление добавляющая/убирающая popup_opened переданному popupу
 function togglePopup (popup) {
+    document.addEventListener('keydown', closePopupsByEsc);
     popup.classList.toggle('popup_opened');
 }
 
@@ -73,6 +71,14 @@ function openImagePreview () {
     togglePopup(popupOpenImage)
 }
 
+//Функция клик на overlay, 
+const onClickPopupOverlay = (event) => {
+    if( event.target !==  event.currentTarget) {
+        return
+    }
+    togglePopup(event.target.closest('.popup'));
+}
+
 //Функция проверки содержимого попапа редактирования профиля при открытии 
 function openPopupEditProfile () {
     if (popupEditProfile.classList.contains('popup_opened') === false) {
@@ -80,8 +86,22 @@ function openPopupEditProfile () {
         inputAboutMe.value = currentAboutMe.textContent;
     }
 
-    togglePopup (popupEditProfile);
-    //popupEditProfile.classList.toggle('popup_opened'); 
+    togglePopup (popupEditProfile); 
+}
+
+//Функция закрытия попапов на оверлей и кнопку закрытия
+function closePopups () {
+    const popups = Array.from(document.querySelectorAll('.popup'));
+    popups.forEach((popup) => {
+        popup.addEventListener('click', onClickPopupOverlay);
+
+        const closeButtons = Array.from(popup.querySelectorAll('.popup__close-btn'));
+        closeButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+                togglePopup(event.target.closest('.popup'));
+            });
+        })
+    })  
 }
 
 //Функция сохранения данных инпута в профиль
@@ -95,13 +115,12 @@ function formSubmitHandler (evt) {
 //удаление карточки
 const handlerRemove = (event) => {
     event.target.closest('.elements__figure').remove();
-};
+}
 
 //лайк карточки
 const likeFunction = (event) => {
     event.target.classList.toggle('elements__like-btn_active');
 }
-
 
 //создание карточки
 const getCard = (data) => {
@@ -129,7 +148,7 @@ const getCard = (data) => {
 const renderList = () => {
     const items = initialCards.map(element => getCard(element));
     elements.append(...items)
-};
+}
 
 //Получение данных о карточке из формыб отображение карточки
 addButton.addEventListener('click', (event) => {
@@ -142,18 +161,19 @@ addButton.addEventListener('click', (event) => {
         cardName.value = '';
         cardImageLink.value = '';
         openPopupAddCard (); 
-});
+})
 
+function closePopupsByEsc (event) {
+    const activePopup = document.querySelector('.popup_opened');
+    if (event.key === "Escape" && activePopup.classList.contains('popup_opened')){
+        togglePopup(activePopup);
+    }
+}
 //Обработчики событий popup редактирования профиля
 openEditProfilePopupButton.addEventListener ('click', openPopupEditProfile);
-closeEditProfilePopupButton.addEventListener ('click', openPopupEditProfile);
-formEditProfile.addEventListener('submit', formSubmitHandler); 
-
-//Обработчики событий popup добавления карточки
 openAddCardPopupButton.addEventListener('click', openPopupAddCard);
-closeAddCardPopupButton.addEventListener ('click', openPopupAddCard);
+formEditProfile.addEventListener('submit', formSubmitHandler);
 
-//обработчики событий загрузки карточек вместе со страницей, кнопка закрытия попапа карточки
-popupOpenImageCloseButton.addEventListener('click', openImagePreview);
+window.onload = closePopups();
 window.onload = renderList();
 
