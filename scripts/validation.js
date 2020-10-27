@@ -42,7 +42,7 @@ function setEventListeners(formElement) {
     const buttonElement = formElement.querySelector(parametersValidation.submitButtonSelector);
 
     inputElements.forEach((input) => {
-        input.addEventListener ('input', () => {
+        input.addEventListener ('input', (event) => {
             checkInputValidity(formElement, event.target);
             toggleButtonState(formElement, buttonElement);
         });
@@ -51,11 +51,11 @@ function setEventListeners(formElement) {
     toggleButtonState(formElement, buttonElement);
 }
 
-function enableValidation(formSelector) {
+function enableValidation() {
     const formElements = Array.from(document.querySelectorAll(parametersValidation.formSelector));
 
     formElements.forEach( (form) => {
-        form.addEventListener('submit', () => {
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
         });
 
