@@ -1,3 +1,5 @@
+import {toggleButtonState} from './validation.js';
+
 //Переменные popup редактирования профиля
 const popupEditProfile = document.querySelector('.popup__profile-edit');
 const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');
@@ -47,6 +49,7 @@ const initialCards = [
 
 const elements = document.querySelector('.elements'); // секция с карточками
 const addButton = popupAddCard.querySelector('.popup__save-btn'); // кнопка добавления карточек
+const formAddCard = popupAddCard.querySelector('.popup__form'); //форма добавления карточки
 const cardName = popupAddCard.querySelector('.popup__input-card-name'); // инпут названия карточки
 const cardImageLink = popupAddCard.querySelector('.popup__input-image-link'); // инпут ссылки на изображение
 const template = document.querySelector('.template'); // загатовка карточки
@@ -57,22 +60,15 @@ const popupCaption = document.querySelector('.popup__image-caption'); // опи�
 function openPopup (popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupsByEsc);
+    if (popup.classList.contains('popup__add-card')) {
+        toggleButtonState(formAddCard, addButton);
+    }
 }
 
 function closePopup (popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupsByEsc);
 }
-
-//добавление добавляющая/убирающая popup_opened переданному popupу
-// function togglePopup (popup) {
-//     popup.classList.toggle('popup_opened');
-//         if(popup.classList.contains('popup_opened')){
-//             document.addEventListener('keydown', closePopupsByEsc);
-//         } else {
-//             document.removeEventListener('keydown', closePopupsByEsc);
-//         }
-// }
 
 //Функция открытия popup добавления карточки
 function openPopupAddCard () {

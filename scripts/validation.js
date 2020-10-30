@@ -27,7 +27,7 @@ function checkInputValidity(formElement, input) {
     }
 };
 
-function toggleButtonState(formElement, buttonElement) {
+export function toggleButtonState(formElement, buttonElement) {
     if (formElement.checkValidity()) {
         buttonElement.classList.remove(parametersValidation.inactiveButtonClass);
         buttonElement.disabled = false;
