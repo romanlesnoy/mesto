@@ -1,60 +1,26 @@
 import {Card} from './card.js';
-import {FormValidator} from './formValidator.js'
+import {FormValidator} from './formValidator.js';
+import {Section} from './Section.js';
+import {popupEditProfile,
+        openEditProfilePopupButton,
+        formEditProfile,
+        currentProfileName,
+        currentAboutMe,
+        inputProfileName,
+        inputAboutMe,
+        popupAddCard,
+        openAddCardPopupButton,
+        popupOpenImage,
+        initialCards,
+        elements,
+        addButton,
+        cardName,
+        cardImageLink,
+        popupImage,
+        popupCaption,
+        validationElements,
+        } from './constants.js'
 
-//Переменные popup редактирования профиля
-const popupEditProfile = document.querySelector('.popup__profile-edit');
-const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');
-const formEditProfile = popupEditProfile.querySelector('.popup__form');
-
-//Значения профиля
-const currentProfileName = document.querySelector('.profile__name');
-const currentAboutMe = document.querySelector('.profile__about-me');
-
-//Значения инпута popup редактирования профиля
-const inputProfileName = popupEditProfile.querySelector('.popup__input-name');
-const inputAboutMe = popupEditProfile.querySelector('.popup__input-about-me');
-
-//Переменные popup добавления карточки
-const popupAddCard = document.querySelector('.popup__add-card');
-const openAddCardPopupButton = document.querySelector('.profile__add-btn');
-
-//Попап открытие картинки
-const popupOpenImage = document.querySelector('.popup__image-preview');
-
-//Карточки-зачотовки при загрузке страницы
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-]
-
-const elements = document.querySelector('.elements'); // секция с карточками
-const addButton = popupAddCard.querySelector('.popup__save-btn'); // кнопка добавления карточек
-const cardName = popupAddCard.querySelector('.popup__input-card-name'); // инпут названия карточки
-const cardImageLink = popupAddCard.querySelector('.popup__input-image-link'); // инпут ссылки на изображение
-const popupImage = document.querySelector('.popup__image'); //изображение в попапе при отображеении
-const popupCaption = document.querySelector('.popup__image-caption'); // описание изображения при отображении
 
 //Открывает переданный попап
 function openPopup (popup) {
@@ -134,13 +100,7 @@ function closePopupsByEsc (event) {
 //создание карточки
 const addCard = (data) => {
     const card = new Card(data, '.template', openImagePreview);
-    return card.getCard();
-}
-
-//заполнение карточками из массива
-const renderList = () => {
-    const items = initialCards.map(element => addCard(element));
-    elements.append(...items)
+    cardList.addItem (card.getCard());
 }
 
 //Получение данных о карточке из формы отображение карточки
@@ -156,21 +116,18 @@ addButton.addEventListener('click', (event) => {
         closePopup (event.target.closest('.popup')); 
 })
 
-//Валидация формб объект с селекторами отвечающими за валидацию
-const validationElements = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input-field',
-    submitButtonSelector: '.popup__save-btn',
-    inactiveButtonClass: 'popup__save-btn_disable',
-    inputErrorClass: 'popup__input-field_state_invalid'
-}
-
 const formList = Array.from(document.querySelectorAll(validationElements.formSelector));
-
 formList.forEach((form) => {
     const formsValidator = new FormValidator(validationElements, form);
     formsValidator.enableValidation();
 })
+
+const cardList = new Section ({
+    items: initialCards,
+    renderer: (item) => {addCard (item)},
+}, elements)
+
+cardList.render();
 
 //Обработчики событий popup редактирования профиля
 openEditProfilePopupButton.addEventListener ('click', openPopupEditProfile);
@@ -178,4 +135,3 @@ openAddCardPopupButton.addEventListener('click', openPopupAddCard);
 formEditProfile.addEventListener('submit', formSubmitHandler);
 
 closePopups();
-renderList();
