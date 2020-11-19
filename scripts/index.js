@@ -1,6 +1,8 @@
-import {Card} from './card.js';
-import {FormValidator} from './formValidator.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 import {Section} from './Section.js';
+import {Popup} from './Popup.js';
+import {PopupWithImage} from './PopupWithImage.js';
 import {popupEditProfile,
         openEditProfilePopupButton,
         formEditProfile,
@@ -43,13 +45,13 @@ function openPopupAddCard () {
     openPopup (popupAddCard);
 }
 
-//открытие открытия попапа картинки
-function openImagePreview (link, name) {
-    popupImage.src = link;
-    popupImage.alt = name;
-    popupCaption.textContent = name;
-    openPopup(popupOpenImage);
-}
+// открытие открытия попапа картинки
+// function openImagePreview (link, name) {
+//     popupImage.src = link;
+//     popupImage.alt = name;
+//     popupCaption.textContent = name;
+//     openPopup(popupOpenImage);
+// }
 
 //Функция проверки содержимого попапа редактирования профиля при открытии 
 function openPopupEditProfile () {
@@ -97,11 +99,14 @@ function closePopupsByEsc (event) {
     }
 }
 
+const ImagePopup = new PopupWithImage (popupOpenImage, popupImage, popupCaption);
+
 //создание карточки
 const addCard = (data) => {
-    const card = new Card(data, '.template', openImagePreview);
+    const card = new Card(data, '.template', (link, name) => {ImagePopup.open(link, name)});
     cardList.addItem (card.getCard());
 }
+
 
 //Получение данных о карточке из формы отображение карточки
 addButton.addEventListener('click', (event) => {
