@@ -29,6 +29,6 @@ export class Card {
     _setEventLiseners() {
         this._card.querySelector('.elements__remove-btn').addEventListener('click', () => this._handlerRemove());
         this._card.querySelector('.elements__like-btn').addEventListener('click', () => this._likeFunction());
-        this._card.querySelector('.elements__image').addEventListener('click', () => this._openImagePreview(this._link, this._name));
+        this._card.querySelector('.elements__image').addEventListener('click', () => this._openImagePreview(this._name, this._link));
     }
 }

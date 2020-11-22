@@ -47,6 +47,7 @@ export const initialCards = [
 ]
 
 export const elements = document.querySelector('.elements'); // секция с карточками
+export const openAddCardButton = document.querySelector('.profile__add-btn');
 export const addButton = popupAddCard.querySelector('.popup__save-btn'); // кнопка добавления карточек
 export const cardName = popupAddCard.querySelector('.popup__input-card-name'); // инпут названия карточки
 export const cardImageLink = popupAddCard.querySelector('.popup__input-image-link'); // инпут ссылки на изображение
