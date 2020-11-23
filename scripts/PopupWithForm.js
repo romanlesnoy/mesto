@@ -8,6 +8,15 @@ export class PopupWithForm extends Popup {
         this.callBackFunction = callBackFunction;
     }
 
+    open () {
+        super.open();
+        if (this._popup.classList.contains('popup__add-card')) {
+            const submitButton = this._popup.querySelector('.popup__save-btn');
+            submitButton.classList.add('popup__save-btn_disable');
+            submitButton.disabled = true;
+        }
+    }
+
     _getInputValues () {
         this._inputValues = {};
         this._inputFields.forEach((input) => {
