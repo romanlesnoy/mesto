@@ -2,7 +2,8 @@ import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {Section} from './Section.js';
 import {PopupWithImage} from './PopupWithImage.js';
-import {PopupWithForm} from './PopupWithForm.js'
+import {PopupWithForm} from './PopupWithForm.js';
+import {UserInfo} from './UserInfo.js';
 import {popupEditProfile,
         openEditProfilePopupButton,
         formEditProfile,
@@ -39,7 +40,7 @@ const addCard = (data) => {
 }
 
 const cardList = new Section ({
-    items: initialCards,
+    items: initialCards.reverse(),
     renderer: (item) => {addCard (item)},
 }, elements)
 
@@ -50,8 +51,21 @@ const addFormCard = ({cardname, imagelink}) => {
 }
 
 const addCardPopupForm = new PopupWithForm (popupAddCard, addFormCard);
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, aboutme}) => {userInfo.setUserInfo({profilename, aboutme})});
+
+const userInfo = new UserInfo (currentProfileName, currentAboutMe);
+
+const addProfileInfo = () => {
+    editProfilePopupForm.open();
+    const currentInfo = userInfo.getUserInfo();
+    inputProfileName.value = currentInfo.name;
+    inputAboutMe.value = currentInfo.aboutme;
+}
 
 openAddCardButton.addEventListener('click', () => {addCardPopupForm.open()});
+openEditProfilePopupButton.addEventListener('click', addProfileInfo);
+
+
 
 // //Обработчики событий popup редактирования профиля
 // openEditProfilePopupButton.addEventListener ('click', openPopupEditProfile);

@@ -5,7 +5,6 @@ export class PopupWithForm extends Popup {
         super(popup);
         this.poupForm = this._popup.querySelector('.popup__form');
         this.inputFields = Array.from(this.poupForm.querySelectorAll('.popup__input-field'));
-        console.log(this.inputFields);
         this.callBackFunction = callBackFunction;
     }
 
@@ -14,7 +13,6 @@ export class PopupWithForm extends Popup {
         this.inputFields.forEach((input) => {
             this._inputValues[input.name] = input.value;
         });
-        console.log(this._inputValues);
         return this._inputValues;
     }
 
