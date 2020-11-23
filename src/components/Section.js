@@ -5,12 +5,7 @@ export class Section {
         this._container = container;
     }
 
-    clear() {
-        this._container.textContent = '';
-    }
-
     render () {
-        this.clear();
         this._items.forEach(element => {
             this._renderer(element)
         });
