@@ -19,7 +19,7 @@ export class Popup {
     _handleEscClose () {
         if (event.key === "Escape"){this.close()}}
 
-    _closeClickOverlay = (event) => {
+    _closeClickOverlay (event) {
         if(event.target !==  event.currentTarget) {
             return
         }
@@ -28,6 +28,6 @@ export class Popup {
 
     setEventListeners () {
         this._closeButton.addEventListener('click', this.close.bind(this));
-        this._popup.addEventListener('click', this._closeClickOverlay);
+        this._popup.addEventListener('click', this._closeClickOverlay.bind(this));
     }
 }
