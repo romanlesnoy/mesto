@@ -1,22 +1,13 @@
-//Переменные popup редактирования профиля
-export const popupEditProfile = document.querySelector('.popup__profile-edit');
-export const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');
-export const formEditProfile = popupEditProfile.querySelector('.popup__form');
 
-//Значения профиля
-export const currentProfileName = document.querySelector('.profile__name');
-export const currentAboutMe = document.querySelector('.profile__about-me');
+export const popupEditProfile = document.querySelector('.popup__profile-edit');// попап редактирования профиля
+export const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');//кнопка открывающая попап редактирования профиля 
+export const currentProfileName = document.querySelector('.profile__name');//текущее значение имени профиля 
+export const currentAboutMe = document.querySelector('.profile__about-me');//текущее значение данный "о себе"
+export const inputProfileName = popupEditProfile.querySelector('.popup__input-name');//поле ввода имени формы
+export const inputAboutMe = popupEditProfile.querySelector('.popup__input-about-me');// поле ввода "о себе" формы
 
-//Значения инпута popup редактирования профиля
-export const inputProfileName = popupEditProfile.querySelector('.popup__input-name');
-export const inputAboutMe = popupEditProfile.querySelector('.popup__input-about-me');
-
-//Переменные popup добавления карточки
-export const popupAddCard = document.querySelector('.popup__add-card');
-export const openAddCardPopupButton = document.querySelector('.profile__add-btn');
-
-//Попап открытие картинки
-export const popupOpenImage = document.querySelector('.popup__image-preview');
+export const popupAddCard = document.querySelector('.popup__add-card');//попап добавления карточки 
+export const openAddCardPopupButton = document.querySelector('.profile__add-btn');// кнопка открывающая попап добавления карточки
 
 //Карточки-зачотовки при загрузке страницы
 export const initialCards = [
@@ -46,15 +37,12 @@ export const initialCards = [
     }
 ]
 
-export const elements = document.querySelector('.elements'); // секция с карточками
-export const openAddCardButton = document.querySelector('.profile__add-btn');
-export const addButton = popupAddCard.querySelector('.popup__save-btn'); // кнопка добавления карточек
-export const cardName = popupAddCard.querySelector('.popup__input-card-name'); // инпут названия карточки
-export const cardImageLink = popupAddCard.querySelector('.popup__input-image-link'); // инпут ссылки на изображение
+export const elements = document.querySelector('.elements'); //секция заполняемая карточками
+export const popupOpenImage = document.querySelector('.popup__image-preview');//попап превью картинки
 export const popupImage = document.querySelector('.popup__image'); //изображение в попапе при отображеении
 export const popupCaption = document.querySelector('.popup__image-caption'); // описание изображения при отображении
 
-//Валидация формб объект с селекторами отвечающими за валидацию
+//Объект с селекторами отвечающими за валидацию форм
 export const validationElements = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input-field',

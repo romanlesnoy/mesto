@@ -38,6 +38,7 @@ export class FormValidator {
     }
 
     _setEventListeners() {
+        
         this._form.addEventListener('submit', function (evt) {
             evt.preventDefault();
         });
@@ -50,7 +51,7 @@ export class FormValidator {
     }
 
     enableValidation() {
-        this._toggleButtonState();
         this._setEventListeners();
+        this._toggleButtonState();
     }
 }

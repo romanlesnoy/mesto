@@ -12,7 +12,6 @@ export class UserInfo {
     }
 
     setUserInfo ({profilename, aboutme}) {
-        console.log({profilename, aboutme});
         this._profileName.textContent = profilename;
         this._profileAboutMe.textContent = aboutme;
     }
