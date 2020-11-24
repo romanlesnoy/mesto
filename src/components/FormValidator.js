@@ -7,7 +7,7 @@ export class FormValidator {
         this._inputError = settings.inputErrorClass;
     }
 
-    _showError(inputElement){
+    _showError(inputElement) {
         const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
         errorElement.textContent = inputElement.validationMessage;
         inputElement.classList.add(this._inputError);
@@ -38,7 +38,6 @@ export class FormValidator {
     }
 
     _setEventListeners() {
-        
         this._form.addEventListener('submit', function (evt) {
             evt.preventDefault();
         });
@@ -49,6 +48,17 @@ export class FormValidator {
             });
         });
     }
+
+    resetErrorMessage() {
+        this._inputElements.forEach((inputElement) => {
+            this._hideError(inputElement);
+        })
+        if(this._form.parentElement.classList.contains('popup__add-card')){
+            this._submitButton.classList.add(this._inactiveButtonStatus);
+            this._submitButton.disabled = true;
+        } 
+    }
+    
 
     enableValidation() {
         this._setEventListeners();

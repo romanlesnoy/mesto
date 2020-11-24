@@ -4,16 +4,21 @@ export class Card {
         this._link = data.link;
         this._template = document.querySelector(templateSelector).content.querySelector('.elements__figure');
         this._openImagePreview = openImagePreview;
+
     }
 
     getCard () {
         this._card = this._template.cloneNode(true);
+        this._cardImage = this._card.querySelector('.elements__image');
+        this._cardImageCaption = this._card.querySelector('.elements__caption');
+        this._cardLikeButton = this._card.querySelector('.elements__like-btn') ;
+        this._cardDeleteButton = this._card.querySelector('.elements__remove-btn');
         
-        this._card.querySelector('.elements__image').src = this._link;
-        this._card.querySelector('.elements__image').alt = this._name;
-        this._card.querySelector('.elements__caption').textContent = this._name;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
+        this._cardImageCaption.textContent = this._name;
 
-        this._setEventLiseners();
+        this._setEventListeners();
 
         return this._card;
     }
@@ -23,12 +28,12 @@ export class Card {
     }
 
     _likeFunction () {
-        this._card.querySelector('.elements__like-btn').classList.toggle('elements__like-btn_active');
+        this._cardLikeButton.classList.toggle('elements__like-btn_active');
     }
 
-    _setEventLiseners() {
-        this._card.querySelector('.elements__remove-btn').addEventListener('click', () => this._handlerRemove());
-        this._card.querySelector('.elements__like-btn').addEventListener('click', () => this._likeFunction());
-        this._card.querySelector('.elements__image').addEventListener('click', () => this._openImagePreview(this._name, this._link));
+    _setEventListeners() {
+        this._cardDeleteButton.addEventListener('click', () => this._handlerRemove());
+        this._cardLikeButton.addEventListener('click', () => this._likeFunction());
+        this._cardImage.addEventListener('click', () => this._openImagePreview(this._name, this._link));
     }
 }

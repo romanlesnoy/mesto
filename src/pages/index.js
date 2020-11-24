@@ -8,31 +8,32 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {popupEditProfile,
         openEditProfilePopupButton,
+        formEditProfile,
         currentProfileName,
         currentAboutMe,
         inputProfileName,
         inputAboutMe,
         popupAddCard,
+        formAddCard,
         openAddCardPopupButton,
         initialCards,
+        template,
         elements,
         popupOpenImage,
-        popupImage,
-        popupCaption,
         validationElements} from '../utils/constants.js';
 
 //валидация форм 
-const formList = Array.from(document.querySelectorAll(validationElements.formSelector));
-    formList.forEach((form) => {
-        const formsValidator = new FormValidator(validationElements, form);
-        formsValidator.enableValidation();
-})
+const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);
+popupEditProfileValidator.enableValidation();
 
-const ImagePopup = new PopupWithImage (popupOpenImage, popupImage, popupCaption);//попап фото карточки
+const popupAddCardValidator = new FormValidator(validationElements, formAddCard);
+popupAddCardValidator.enableValidation();
+
+const imagePopup = new PopupWithImage (popupOpenImage);//попап фото карточки
 
 //создание карточки и добавление ее на страницу  
 const addCard = (data) => {
-    const card = new Card(data, '.template', (name, link) => {ImagePopup.open(name, link)});
+    const card = new Card(data, template, (name, link) => {imagePopup.open(name, link)});
     cardList.addItem (card.getCard());
 }
 
@@ -51,17 +52,26 @@ const addCardInfo = ({cardname, imagelink}) => {
 
 const addCardPopupForm = new PopupWithForm (popupAddCard, addCardInfo); //попап формы карточки
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, aboutme}) => {userInfo.setUserInfo({profilename, aboutme})}); //попап формы информации профиля
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, job}) => {userInfo.setUserInfo({profilename, job})}); //попап формы информации профиля
 
 const userInfo = new UserInfo (currentProfileName, currentAboutMe);// объект с информацией пользователя 
 
 //функция открывающая попап редактирофания профиля и заполняющая форму текущими значениями профиля 
 const addProfileInfo = () => {
+    popupEditProfileValidator.resetErrorMessage();
     editProfilePopupForm.open();
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
-    inputAboutMe.value = currentInfo.aboutme;
+    inputAboutMe.value = currentInfo.job;
 }
 
-openAddCardPopupButton.addEventListener('click', () => {addCardPopupForm.open()});//обработчик кнопки добавления карточки
+const openAddCardPopup = () => {
+    popupAddCardValidator.resetErrorMessage();
+    addCardPopupForm.open()
+}
+
+openAddCardPopupButton.addEventListener('click', openAddCardPopup);//обработчик кнопки добавления карточки
 openEditProfilePopupButton.addEventListener('click', addProfileInfo);//обработчик кнопки редактирования профиля 
+imagePopup.setEventListeners();
+addCardPopupForm.setEventListeners();
+editProfilePopupForm.setEventListeners();
