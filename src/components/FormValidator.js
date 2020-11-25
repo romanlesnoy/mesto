@@ -42,26 +42,17 @@ export class FormValidator {
             evt.preventDefault();
         });
         this._inputElements.forEach((inputElement) => {
+            this._hideError(inputElement);
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement);
                 this._toggleButtonState();
             });
         });
     }
-
-    resetErrorMessage() {
-        this._toggleButtonState();
-        this._inputElements.forEach((inputElement) => {
-            this._hideError(inputElement);
-        })
-        // if(this._form.parentElement.classList.contains('popup__add-card')){
-        //     this._submitButton.classList.add(this._inactiveButtonStatus);
-        //     this._submitButton.disabled = true;
-        // } 
-    }
     
 
     enableValidation() {
+        this._toggleButtonState();
         this._setEventListeners();
     }
 }

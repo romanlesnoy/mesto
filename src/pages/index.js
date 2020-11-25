@@ -24,10 +24,8 @@ import {popupEditProfile,
 
 //валидация форм 
 const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);
-popupEditProfileValidator.enableValidation();
 
 const popupAddCardValidator = new FormValidator(validationElements, formAddCard);
-popupAddCardValidator.enableValidation();
 
 const imagePopup = new PopupWithImage (popupOpenImage);//попап фото карточки
 
@@ -61,12 +59,12 @@ const addProfileInfo = () => {
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
     inputAboutMe.value = currentInfo.job;
-    popupEditProfileValidator.resetErrorMessage();
+    popupEditProfileValidator.enableValidation();
     editProfilePopupForm.open();
 }
 
 const openAddCardPopup = () => {
-    popupAddCardValidator.resetErrorMessage();
+    popupAddCardValidator.enableValidation();
     addCardPopupForm.open()
 }
 
