@@ -43,12 +43,7 @@ const cardList = new Section ({
 
 cardList.render();
 
-//передача данных формы карточки, для ёё создания и добавления на страницу  
-const addCardInfo = ({cardname, imagelink}) => {
-    addCard({name: cardname, link: imagelink});
-}
-
-const addCardPopupForm = new PopupWithForm (popupAddCard, addCardInfo); //попап формы карточки
+const addCardPopupForm = new PopupWithForm (popupAddCard, ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); //попап формы карточки
 
 const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, job}) => {userInfo.setUserInfo({profilename, job})}); //попап формы информации профиля
 
