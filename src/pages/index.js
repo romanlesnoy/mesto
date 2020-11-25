@@ -58,11 +58,11 @@ const userInfo = new UserInfo (currentProfileName, currentAboutMe);// объек
 
 //функция открывающая попап редактирофания профиля и заполняющая форму текущими значениями профиля 
 const addProfileInfo = () => {
-    popupEditProfileValidator.resetErrorMessage();
-    editProfilePopupForm.open();
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
     inputAboutMe.value = currentInfo.job;
+    popupEditProfileValidator.resetErrorMessage();
+    editProfilePopupForm.open();
 }
 
 const openAddCardPopup = () => {

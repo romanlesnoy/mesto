@@ -50,13 +50,14 @@ export class FormValidator {
     }
 
     resetErrorMessage() {
+        this._toggleButtonState();
         this._inputElements.forEach((inputElement) => {
             this._hideError(inputElement);
         })
-        if(this._form.parentElement.classList.contains('popup__add-card')){
-            this._submitButton.classList.add(this._inactiveButtonStatus);
-            this._submitButton.disabled = true;
-        } 
+        // if(this._form.parentElement.classList.contains('popup__add-card')){
+        //     this._submitButton.classList.add(this._inactiveButtonStatus);
+        //     this._submitButton.disabled = true;
+        // } 
     }
     
 
