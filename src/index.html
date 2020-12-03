@@ -15,7 +15,10 @@
     <main>
         <section class="profile">
             <div class="profile__container">
-                <img class="profile__avatar" src="<%=require('./images/image-1.png')%>" alt="Фотопортрет Жака-Ива Кусто">
+                <div class="profile__avatar-container">
+                    <img class="profile__avatar" src="<%=require('./images/image-1.png')%>" alt="Фотопортрет Жака-Ива Кусто">
+                    <button class=profile__change-avatar-btn></button>
+                </div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button class="profile__edit-btn" type="button"></button>
@@ -32,6 +35,16 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
+    <section class="popup popup__avatar-update">
+        <form class="popup__form" name="update-avatar" novalidate>
+            <button class="popup__close-btn" type="button"></button>
+            <h3 class="popup__title">Обновить аватар</h3>
+            <input id="avatar-link" class="popup__input-field popup__input-avatar-link" type="url" name="avatarlink" placeholder="Ссылка на картинку" required autocomplete="off">
+            <span id="avatar-link-error" class="popup__input-error"></span>
+            <button class="popup__save-btn" type="submit">Сохранить</button>
+        </form>
+    </section>
+
     <section class="popup popup__profile-edit">
         <form class="popup__form" name="profile-edit" novalidate>
             <button class="popup__close-btn" type="button"></button>
@@ -40,7 +53,7 @@
             <span id="user-name-error" class="popup__input-error"></span>
             <input id="about"  class="popup__input-field popup__input-about-me" type="text" name="job" placeholder="О себе" minlength="2" maxlength="200" required autocomplete="off">
             <span id="about-error" class="popup__input-error"></span>
-            <button aria-label="Close" class="popup__save-btn" type="submit">Сохранить</button>
+            <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
     </section>
 
@@ -52,7 +65,7 @@
             <span id="card-name-error" class="popup__input-error"></span>
             <input id="image-link" class="popup__input-field popup__input-image-link" type="url" name="imagelink" placeholder="Ссылка на картинку" required autocomplete="off">
             <span id="image-link-error" class="popup__input-error"></span>
-            <button aria-label="Close" class="popup__save-btn" type="submit">Создать</button>
+            <button class="popup__save-btn" type="submit">Создать</button>
         </form>
     </section>
 
@@ -62,6 +75,14 @@
             <img class="popup__image" src="" alt="">
             <figcaption class="popup__image-caption"></figcaption>
         </figure>
+    </section>
+
+    <section class="popup popup__remove-card">
+        <form class="popup__form" name="profile-edit" novalidate>
+            <button class="popup__close-btn" type="button"></button>
+            <h3 class="popup__title">Вы уверены?</h3>
+            <button class="popup__save-btn" type="submit">Да</button>
+        </form>
     </section>
 
     <template class="template">

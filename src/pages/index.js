@@ -16,16 +16,18 @@ import {popupEditProfile,
         popupAddCard,
         formAddCard,
         openAddCardPopupButton,
+        popupUpdateAvatar,
+        formUpdateAvatar,
+        changeAvatarButton,
         initialCards,
         template,
         elements,
         popupOpenImage,
         validationElements} from '../utils/constants.js';
 
-//валидация форм 
-const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);
-
-const popupAddCardValidator = new FormValidator(validationElements, formAddCard);
+const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);//валидация формы редактирования профиля 
+const popupAddCardValidator = new FormValidator(validationElements, formAddCard);// валидация формы добавления карточки
+const popupUpdateAvatarValidator = new FormValidator(validationElements, formUpdateAvatar);
 
 const imagePopup = new PopupWithImage (popupOpenImage);//попап фото карточки
 
@@ -43,13 +45,15 @@ const cardList = new Section ({
 
 cardList.render();
 
+const testSubmitAvatar = (data) => {
+    console.log(data);
+}
 const addCardPopupForm = new PopupWithForm (popupAddCard, ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); //попап формы карточки
-
 const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, job}) => {userInfo.setUserInfo({profilename, job})}); //попап формы информации профиля
-
+const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, (avatarlink) => {testSubmitAvatar({avatarlink})});
 const userInfo = new UserInfo (currentProfileName, currentAboutMe);// объект с информацией пользователя 
 
-//функция открывающая попап редактирофания профиля и заполняющая форму текущими значениями профиля 
+//функция открывающая попап редактирофания профиля, заполняющая форму текущими значениями профиля, проверяющая валидацию
 const addProfileInfo = () => {
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
@@ -58,13 +62,21 @@ const addProfileInfo = () => {
     editProfilePopupForm.open();
 }
 
+//функция открывающая попап добавления карточки, проверяющая валидацию
 const openAddCardPopup = () => {
     popupAddCardValidator.enableValidation();
     addCardPopupForm.open()
 }
 
+const openUpdateAvatarPopup = () => {
+    popupUpdateAvatarValidator.enableValidation();
+    updateAvatarPopup.open();
+}
+
 openAddCardPopupButton.addEventListener('click', openAddCardPopup);//обработчик кнопки добавления карточки
 openEditProfilePopupButton.addEventListener('click', addProfileInfo);//обработчик кнопки редактирования профиля 
+changeAvatarButton.addEventListener('click', openUpdateAvatarPopup);
 imagePopup.setEventListeners();
+updateAvatarPopup.setEventListeners();
 addCardPopupForm.setEventListeners();
 editProfilePopupForm.setEventListeners();

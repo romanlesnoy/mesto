@@ -1,4 +1,3 @@
-
 export const popupEditProfile = document.querySelector('.popup__profile-edit');// попап редактирования профиля
 export const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');//кнопка открывающая попап редактирования профиля 
 export const formEditProfile = popupEditProfile.querySelector('.popup__form');
@@ -10,6 +9,10 @@ export const inputAboutMe = popupEditProfile.querySelector('.popup__input-about-
 export const popupAddCard = document.querySelector('.popup__add-card');//попап добавления карточки 
 export const formAddCard= popupAddCard.querySelector('.popup__form');//
 export const openAddCardPopupButton = document.querySelector('.profile__add-btn');// кнопка открывающая попап добавления карточки
+
+export const popupUpdateAvatar = document.querySelector('.popup__avatar-update');
+export const formUpdateAvatar = popupUpdateAvatar.querySelector('.popup__form');
+export const changeAvatarButton = document.querySelector('.profile__change-avatar-btn');
 
 //Карточки-зачотовки при загрузке страницы
 export const initialCards = [
