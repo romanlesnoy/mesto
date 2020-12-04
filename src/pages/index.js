@@ -1,30 +1,38 @@
 import './index.css';
-
+import {Api} from '../components/Api.js';
+import {popupEditProfile,
+    openEditProfilePopupButton,
+    formEditProfile,
+    curentAvatarSelector,
+    currentProfileName,
+    currentAboutMe,
+    inputProfileName,
+    inputAboutMe,
+    popupAddCard,
+    formAddCard,
+    openAddCardPopupButton,
+    popupUpdateAvatar,
+    formUpdateAvatar,
+    changeAvatarButton,
+    initialCards,
+    template,
+    elements,
+    popupOpenImage,
+    validationElements} from '../utils/constants.js';
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
-import {popupEditProfile,
-        openEditProfilePopupButton,
-        formEditProfile,
-        curentAvatarSelector,
-        currentProfileName,
-        currentAboutMe,
-        inputProfileName,
-        inputAboutMe,
-        popupAddCard,
-        formAddCard,
-        openAddCardPopupButton,
-        popupUpdateAvatar,
-        formUpdateAvatar,
-        changeAvatarButton,
-        initialCards,
-        template,
-        elements,
-        popupOpenImage,
-        validationElements} from '../utils/constants.js';
+
+const api = new Api ({
+    token: 'f15df90b-c5d7-4a51-ba9b-c09d4fecf6eb',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-18',
+});
+
+api.getUserInformation();
+api.getCard();
 
 const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);//валидация формы редактирования профиля 
 const popupAddCardValidator = new FormValidator(validationElements, formAddCard);// валидация формы добавления карточки
