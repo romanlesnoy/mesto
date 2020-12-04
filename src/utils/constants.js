@@ -1,6 +1,7 @@
 export const popupEditProfile = document.querySelector('.popup__profile-edit');// попап редактирования профиля
 export const openEditProfilePopupButton = document.querySelector('.profile__edit-btn');//кнопка открывающая попап редактирования профиля 
 export const formEditProfile = popupEditProfile.querySelector('.popup__form');
+export const curentAvatarSelector = document.querySelector('.profile__avatar');
 export const currentProfileName = document.querySelector('.profile__name');//текущее значение имени профиля 
 export const currentAboutMe = document.querySelector('.profile__about-me');//текущее значение данный "о себе"
 export const inputProfileName = popupEditProfile.querySelector('.popup__input-name');//поле ввода имени формы

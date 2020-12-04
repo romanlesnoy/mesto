@@ -1,5 +1,6 @@
 export class UserInfo {
-    constructor (profileNameSelector, aboutMeSelector ) {
+    constructor (avatarSelector, profileNameSelector, aboutMeSelector ) {
+        this._avatarProfile = avatarSelector
         this._profileName = profileNameSelector;
         this._profileAboutMe = aboutMeSelector;
     }
@@ -9,6 +10,11 @@ export class UserInfo {
         this._profileInfo.name = this._profileName.textContent;
         this._profileInfo.job = this._profileAboutMe.textContent;
         return this._profileInfo;
+    }
+
+    setUserAvatar (link) {
+        console.log(link);
+        this._avatarProfile.src = link.avatarlink;
     }
 
     setUserInfo ({profilename, job}) {

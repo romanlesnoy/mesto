@@ -9,6 +9,7 @@ import {UserInfo} from '../components/UserInfo.js';
 import {popupEditProfile,
         openEditProfilePopupButton,
         formEditProfile,
+        curentAvatarSelector,
         currentProfileName,
         currentAboutMe,
         inputProfileName,
@@ -45,13 +46,10 @@ const cardList = new Section ({
 
 cardList.render();
 
-const testSubmitAvatar = (data) => {
-    console.log(data);
-}
 const addCardPopupForm = new PopupWithForm (popupAddCard, ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); //попап формы карточки
 const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, job}) => {userInfo.setUserInfo({profilename, job})}); //попап формы информации профиля
-const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, (avatarlink) => {testSubmitAvatar({avatarlink})});
-const userInfo = new UserInfo (currentProfileName, currentAboutMe);// объект с информацией пользователя 
+const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, (link) => userInfo.setUserAvatar(link));
+const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);// объект с информацией пользователя 
 
 //функция открывающая попап редактирофания профиля, заполняющая форму текущими значениями профиля, проверяющая валидацию
 const addProfileInfo = () => {
