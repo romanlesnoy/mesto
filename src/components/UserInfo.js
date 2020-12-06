@@ -13,11 +13,10 @@ export class UserInfo {
     }
 
     setUserAvatar (link) {
-        console.log(link);
-        this._avatarProfile.src = link.avatarlink;
+        this._avatarProfile.src = link;
     }
 
-    setUserInfo ({profilename, job}) {
+    setUserInfo (profilename, job) {
         this._profileName.textContent = profilename;
         this._profileAboutMe.textContent = job;
     }

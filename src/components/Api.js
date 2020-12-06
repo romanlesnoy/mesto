@@ -4,27 +4,41 @@ export class Api {
         this._url = url;
     }
 
-    getUserInformation () {
-        return fetch(`${this._url}/users/me`, {
-            headers: {
-                authorization: this._token
+    _response (res) {
+        if (res.ok) {
+            return res.json();
         }
-    })
-        .then(res => res.json())
-        .then((result) => {
-            console.log(result);
-        }); 
+        return Promise.reject("Произошла ошибка");
     }
 
-    getCard () {
+    getUserInformation () {
+            return fetch(`${this._url}/users/me`, {
+                headers: {
+                    authorization: this._token,
+            }
+        }).then(this._response)
+    }
+
+    getCards () {
         return fetch(`${this._url}/cards`, {
             headers: {
-                authorization: this._token
+                authorization: this._token,
         }
-    })
-        .then(res => res.json())
-        .then((result) => {
-            console.log(result);
-        }); 
+        }).then(this._response)
+    }
+
+    editUserInfo (name, about) {
+        console.log(name,about);
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                about
+            })
+        }).then(this._response)
     }
 }
