@@ -14,6 +14,7 @@ import {popupEditProfile,
     popupUpdateAvatar,
     formUpdateAvatar,
     changeAvatarButton,
+    popupRemoveCard,
     template,
     elements,
     popupOpenImage,
@@ -23,8 +24,10 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
+import {PopupWithSubmit} from '../components/PopupWithSubmit.js';
 import {UserInfo} from '../components/UserInfo.js';
 
+const ownerId = '61a4e408317fe65fbe7a0c97';
 const api = new Api ({
     token: 'f15df90b-c5d7-4a51-ba9b-c09d4fecf6eb',
     url: 'https://mesto.nomoreparties.co/v1/cohort-18',
@@ -34,23 +37,29 @@ const popupEditProfileValidator = new FormValidator(validationElements, formEdit
 const popupAddCardValidator = new FormValidator(validationElements, formAddCard);// валидация формы добавления карточки
 const popupUpdateAvatarValidator = new FormValidator(validationElements, formUpdateAvatar);
 
-const imagePopup = new PopupWithImage (popupOpenImage);//попап фото карточки
+const imagePopup = new PopupWithImage (popupOpenImage);
+// const removeCardPopup = new PopupWithSubmit(popupRemoveCard);
 
-//создание карточки и добавление ее на страницу  
 const addCard = (data) => {
-    const card = new Card(data, template, (name, link) => {imagePopup.open(name, link)});
+    const card = new Card(data, ownerId, template, (name, link) => {imagePopup.open(name, link)});
     cardList.addItem (card.getCard());
 }
 
-//создание секций с карточками
-const cardList = new Section (addCard, elements);
+const cardList = new Section (elements);
 
-const addCardPopupForm = new PopupWithForm (popupAddCard, ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})});
+const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
+    api.addNewCard(cardData)
+    .then ((cardData) => {
+        addCard(cardData)
+    }).catch((err) => {
+        console.log(err)
+    })
+});
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, (data) => {
-    api.editUserInfo(data.profilename, data.job)
-    .then ((res) => {
-        userInfo.setUserInfo(res.name, res.about)
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, (userData) => {
+    api.editUserInfo(userData)
+    .then ((userData) => {
+        userInfo.setUserInfo(userData.name, userData.about)
     }).catch((err) => {
         console.log(err)
     })
@@ -64,12 +73,15 @@ Promise.all ([
     api.getUserInformation (),
     api.getCards(),
 ]).then((values) => {
-    const userData = values[0];
+    const [userData, initialCards] = values;
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
-    
-    const initialCards = values[1];
-    cardList.render(initialCards.reverse());
+    console.log(userData);
+    console.log(initialCards);
+    const initialCardsReverse = initialCards.reverse();
+    initialCardsReverse.forEach(element => {
+        addCard(element);
+    });
 }) .catch((err) => {
     console.log(err);
 })

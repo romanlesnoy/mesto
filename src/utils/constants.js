@@ -15,6 +15,8 @@ export const popupUpdateAvatar = document.querySelector('.popup__avatar-update')
 export const formUpdateAvatar = popupUpdateAvatar.querySelector('.popup__form');
 export const changeAvatarButton = document.querySelector('.profile__change-avatar-btn');
 
+export const popupRemoveCard = document.querySelector('.popup__remove-card');
+
 //Карточки-зачотовки при загрузке страницы
 export const initialCards = [
     {

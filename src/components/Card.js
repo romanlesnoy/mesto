@@ -1,7 +1,10 @@
 export class Card {
-    constructor (data, templateSelector, openImagePreview) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor ({name, link, likes, owner}, ownerId, templateSelector, openImagePreview) {
+        this._name = name;
+        this._link = link;
+        this._likes = likes;
+        this._id = owner._id;
+        this._ownerId = ownerId;
         this._template = document.querySelector(templateSelector).content.querySelector('.elements__figure');
         this._openImagePreview = openImagePreview;
 
@@ -11,15 +14,21 @@ export class Card {
         this._card = this._template.cloneNode(true);
         this._cardImage = this._card.querySelector('.elements__image');
         this._cardImageCaption = this._card.querySelector('.elements__caption');
-        this._cardLikeButton = this._card.querySelector('.elements__like-btn') ;
+        this._cardLikeButton = this._card.querySelector('.elements__like-btn');
+        this._cardLikeCounter = this._card.querySelector('.elements__like-counter');
         this._cardDeleteButton = this._card.querySelector('.elements__remove-btn');
         
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
         this._cardImageCaption.textContent = this._name;
+        this._cardLikeCounter.textContent = this._likes.length;
+
+        if (this._id !== this._ownerId) {
+            this._cardDeleteButton.classList.add('remove-btn_visibility');
+        }
 
         this._setEventListeners();
-
+        
         return this._card;
     }
 
