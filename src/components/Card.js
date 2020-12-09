@@ -1,13 +1,20 @@
 export class Card {
-    constructor ({name, link, likes, owner}, ownerId, templateSelector, openImagePreview) {
+    constructor ({name, link, likes, _id, owner, currentUserId, template, handleClickCard, handleRemoveCard}) {
         this._name = name;
         this._link = link;
         this._likes = likes;
-        this._id = owner._id;
-        this._ownerId = ownerId;
-        this._template = document.querySelector(templateSelector).content.querySelector('.elements__figure');
-        this._openImagePreview = openImagePreview;
+        this._cardId = _id,
+        this._ownerId = owner._id;
+        this._curentOwnerId = currentUserId;
+        this._template = document.querySelector(template).content.querySelector('.elements__figure');
+        this._handleClickCard = handleClickCard;
+        this._handleRemoveCard = handleRemoveCard;
+    }
 
+    _hideRemoveButton() {
+        if (this._curentOwnerId !== this._ownerId) {
+            this._cardDeleteButton.classList.add('remove-btn_visibility');
+        }
     }
 
     getCard () {
@@ -23,26 +30,24 @@ export class Card {
         this._cardImageCaption.textContent = this._name;
         this._cardLikeCounter.textContent = this._likes.length;
 
-        if (this._id !== this._ownerId) {
-            this._cardDeleteButton.classList.add('remove-btn_visibility');
-        }
+        this._hideRemoveButton();
 
         this._setEventListeners();
         
         return this._card;
     }
 
-    _handlerRemove () {
+    removeCard() {
         this._card.remove();
     }
 
-    _likeFunction () {
+    _likeFunction() {
         this._cardLikeButton.classList.toggle('elements__like-btn_active');
     }
 
     _setEventListeners() {
-        this._cardDeleteButton.addEventListener('click', () => this._handlerRemove());
+        this._cardDeleteButton.addEventListener('click', () => this._handleRemoveCard(this._cardId));
         this._cardLikeButton.addEventListener('click', () => this._likeFunction());
-        this._cardImage.addEventListener('click', () => this._openImagePreview(this._name, this._link));
+        this._cardImage.addEventListener('click', () => this._handleClickCard(this._name, this._link));
     }
 }

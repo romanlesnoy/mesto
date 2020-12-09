@@ -27,7 +27,6 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithSubmit} from '../components/PopupWithSubmit.js';
 import {UserInfo} from '../components/UserInfo.js';
 
-const ownerId = '61a4e408317fe65fbe7a0c97';
 const api = new Api ({
     token: 'f15df90b-c5d7-4a51-ba9b-c09d4fecf6eb',
     url: 'https://mesto.nomoreparties.co/v1/cohort-18',
@@ -38,10 +37,27 @@ const popupAddCardValidator = new FormValidator(validationElements, formAddCard)
 const popupUpdateAvatarValidator = new FormValidator(validationElements, formUpdateAvatar);
 
 const imagePopup = new PopupWithImage (popupOpenImage);
-// const removeCardPopup = new PopupWithSubmit(popupRemoveCard);
+const removeCardPopup = new PopupWithSubmit(popupRemoveCard);
+removeCardPopup.setEventListeners();
 
-const addCard = (data) => {
-    const card = new Card(data, ownerId, template, (name, link) => {imagePopup.open(name, link)});
+const confirmAndDeleteCard = (id, card) => {
+    removeCardPopup.setRemove(() => {
+        api.removeCard(id)
+        .then(() => {card.removeCard()})
+        .then(() => removeCardPopup.close())
+        .catch((err) => {console.log(err)})
+    })
+    removeCardPopup.open();
+}
+
+const addCard = (data, currentUserId) => {
+    const card = new Card({    
+        ...data, 
+        currentUserId, 
+        template, 
+        handleClickCard: () => {imagePopup.open(data)},
+        handleRemoveCard: (id) => {confirmAndDeleteCard(id, card)}
+    });
     cardList.addItem (card.getCard());
 }
 
@@ -63,11 +79,11 @@ const editProfilePopupForm = new PopupWithForm (popupEditProfile, (userData) => 
     }).catch((err) => {
         console.log(err)
     })
-})  
+})
 
 const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar);
 //  (link) => userInfo.setUserAvatar(link));
-const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);// объект с информацией пользователя 
+const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);// объект с информацией пользователя
 
 Promise.all ([
     api.getUserInformation (),
@@ -76,8 +92,6 @@ Promise.all ([
     const [userData, initialCards] = values;
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
-    console.log(userData);
-    console.log(initialCards);
     const initialCardsReverse = initialCards.reverse();
     initialCardsReverse.forEach(element => {
         addCard(element);
