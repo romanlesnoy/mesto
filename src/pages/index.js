@@ -33,15 +33,15 @@ const api = new Api ({
     url: 'https://mesto.nomoreparties.co/v1/cohort-18',
 });
 
+const cardList = new Section (elements);
+
 const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);//валидация формы редактирования профиля 
 const popupAddCardValidator = new FormValidator(validationElements, formAddCard);// валидация формы добавления карточки
 const popupUpdateAvatarValidator = new FormValidator(validationElements, formUpdateAvatar);
 const imagePopup = new PopupWithImage (popupOpenImage);
 const removeCardPopup = new PopupWithSubmit(popupRemoveCard);
-removeCardPopup.setEventListeners();
 
 const confirmAndDeleteCard = (id, card) => {
-    console.log(id)
     removeCardPopup.setRemove(() => {
         api.removeCard(id)
         .then(() => {card.removeCard()})
@@ -51,7 +51,7 @@ const confirmAndDeleteCard = (id, card) => {
     removeCardPopup.open();
 }
 
-const addCard = (data, currentUserId) => {
+const addCard = (data) => {
     const card = new Card({    
         ...data, 
         currentUserId: userId, 
@@ -64,8 +64,6 @@ const addCard = (data, currentUserId) => {
     cardList.addItem (card.getCard());
 }
 
-const cardList = new Section (elements);
-
 const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
     api.addNewCard(cardData)
     .then ((cardData) => {
@@ -75,17 +73,24 @@ const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
     })
 });
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, (userData) => {
-    api.editUserInfo(userData)
-    .then ((userData) => {
-        userInfo.setUserInfo(userData.name, userData.about)
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, about}) => {
+    api.editUserInfo(name, about)
+    .then ((res) => {
+        userInfo.setUserInfo(res.name, res.about)
     }).catch((err) => {
         console.log(err)
     })
 })
 
-const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar);
-//  (link) => userInfo.setUserAvatar(link));
+const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) => {
+    api.editUserAvatar(avatarlink)
+    .then ((res) => {
+        userInfo.setUserAvatar(res.avatar)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
 const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);// объект с информацией пользователя
 
 Promise.all ([
@@ -130,3 +135,4 @@ imagePopup.setEventListeners();
 updateAvatarPopup.setEventListeners();
 addCardPopupForm.setEventListeners();
 editProfilePopupForm.setEventListeners();
+removeCardPopup.setEventListeners();

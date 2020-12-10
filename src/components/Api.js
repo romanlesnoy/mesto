@@ -27,7 +27,7 @@ export class Api {
         }).then(this._response)
     }
 
-    editUserInfo ({name, about}) {
+    editUserInfo (name, about) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -65,7 +65,6 @@ export class Api {
     }
 
     likeCard(cardId)  {
-        console.log(cardId, "addlike")
         return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
@@ -75,12 +74,24 @@ export class Api {
     }
 
     dislikeCard(cardId) {
-        console.log(cardId, 'deletelike')
         return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token,
         }
+        }).then(this._response)
+    }
+
+    editUserAvatar (avatar) {
+        return fetch(`${this._url}/users/me/avatar `, {
+            method: 'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                avatar
+            })
         }).then(this._response)
     }
 }

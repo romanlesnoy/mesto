@@ -43,6 +43,10 @@ export class Card {
                 .catch(err => console.log(err));
         }
     }
+    
+    removeCard() {
+        this._card.remove();
+    }
 
     getCard() {
         this._card = this._template.cloneNode(true);
@@ -62,10 +66,6 @@ export class Card {
         this._setEventListeners();
         
         return this._card;
-    }
-
-    removeCard() {
-        this._card.remove();
     }
 
     _setEventListeners() {
