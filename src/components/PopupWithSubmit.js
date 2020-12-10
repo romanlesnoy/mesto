@@ -6,16 +6,12 @@ export class PopupWithSubmit extends Popup {
     }
 
     setRemove(submitAction) {
-        console.log(submitAction);
         this._handleSubmitCallback = submitAction;
     }
 
     _submitHandler() {
         event.preventDefault();
-        console.log('click');
-        console.log(this._handleSubmitCallback);
         this._handleSubmitCallback();
-        this.close();
     }
 
     setEventListeners() {

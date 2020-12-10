@@ -15,6 +15,7 @@ import {popupEditProfile,
     formUpdateAvatar,
     changeAvatarButton,
     popupRemoveCard,
+    userId,
     template,
     elements,
     popupOpenImage,
@@ -35,12 +36,12 @@ const api = new Api ({
 const popupEditProfileValidator = new FormValidator(validationElements, formEditProfile);//валидация формы редактирования профиля 
 const popupAddCardValidator = new FormValidator(validationElements, formAddCard);// валидация формы добавления карточки
 const popupUpdateAvatarValidator = new FormValidator(validationElements, formUpdateAvatar);
-
 const imagePopup = new PopupWithImage (popupOpenImage);
 const removeCardPopup = new PopupWithSubmit(popupRemoveCard);
 removeCardPopup.setEventListeners();
 
 const confirmAndDeleteCard = (id, card) => {
+    console.log(id)
     removeCardPopup.setRemove(() => {
         api.removeCard(id)
         .then(() => {card.removeCard()})
@@ -53,10 +54,12 @@ const confirmAndDeleteCard = (id, card) => {
 const addCard = (data, currentUserId) => {
     const card = new Card({    
         ...data, 
-        currentUserId, 
+        currentUserId: userId, 
         template, 
         handleClickCard: () => {imagePopup.open(data)},
-        handleRemoveCard: (id) => {confirmAndDeleteCard(id, card)}
+        handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
+        likeCard: (id) => {return api.likeCard(id)},
+        dislikeCard: (id) => {return api.dislikeCard(id)}
     });
     cardList.addItem (card.getCard());
 }

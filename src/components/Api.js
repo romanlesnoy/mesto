@@ -56,8 +56,27 @@ export class Api {
     }
 
     removeCard (cardId) {
-        console.log(cardId)
         return fetch(`${this._url}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+        }
+        }).then(this._response)
+    }
+
+    likeCard(cardId)  {
+        console.log(cardId, "addlike")
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: {
+                authorization: this._token,
+        }
+        }).then(this._response)
+    }
+
+    dislikeCard(cardId) {
+        console.log(cardId, 'deletelike')
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token,
