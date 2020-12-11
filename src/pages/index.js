@@ -68,7 +68,11 @@ const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
     api.addNewCard(cardData)
     .then ((cardData) => {
         addCard(cardData)
-    }).catch((err) => {
+    })
+    .then (() => {
+        addCardPopupForm.close()
+    })
+    .catch((err) => {
         console.log(err)
     })
 });
@@ -77,7 +81,10 @@ const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, about}
     api.editUserInfo(name, about)
     .then ((res) => {
         userInfo.setUserInfo(res.name, res.about)
-    }).catch((err) => {
+    }).then (() => {
+        editProfilePopupForm.close()
+    })
+    .catch((err) => {
         console.log(err)
     })
 })
@@ -86,7 +93,11 @@ const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) =
     api.editUserAvatar(avatarlink)
     .then ((res) => {
         userInfo.setUserAvatar(res.avatar)
-    }).catch((err) => {
+    })
+    .then (() => {
+        updateAvatarPopup.close()
+    })
+    .catch((err) => {
         console.log(err)
     })
 })
