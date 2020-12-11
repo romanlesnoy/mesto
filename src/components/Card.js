@@ -28,14 +28,14 @@ export class Card {
 
     _likeFunction(event) {
         if(event.target.classList.contains('elements__like-btn_active')){
-            this._deleteLike(this._cardId)
+            this._deleteLike()
                 .then((res) => {
                     this._cardLikeButton.classList.remove('elements__like-btn_active');
                     this._cardLikeCounter.textContent = res.likes.length
                 })
                 .catch(err => console.log(err));
         } else {
-            this._putLike(this._cardId)
+            this._putLike()
                 .then((res) => {
                     this._cardLikeButton.classList.add('elements__like-btn_active');
                     this._cardLikeCounter.textContent = res.likes.length

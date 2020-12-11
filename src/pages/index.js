@@ -58,8 +58,8 @@ const addCard = (data) => {
         template, 
         handleClickCard: () => {imagePopup.open(data)},
         handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
-        likeCard: (id) => {return api.likeCard(id)},
-        dislikeCard: (id) => {return api.dislikeCard(id)}
+        likeCard: () => {return api.likeCard(data._id)},
+        dislikeCard: () => {return api.dislikeCard(data._id)}
     });
     cardList.addItem (card.getCard());
 }
@@ -115,7 +115,7 @@ Promise.all ([
     initialCardsReverse.forEach(element => {
         addCard(element);
     });
-}) .catch((err) => {
+}).catch((err) => {
     console.log(err);
 })
 
