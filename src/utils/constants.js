@@ -17,8 +17,6 @@ export const changeAvatarButton = document.querySelector('.profile__change-avata
 
 export const popupRemoveCard = document.querySelector('.popup__remove-card');
 
-export const userId = '61a4e408317fe65fbe7a0c97';
-
 export const template = '.template'; //template
 export const elements = document.querySelector('.elements'); //секция заполняемая карточками
 export const popupOpenImage = document.querySelector('.popup__image-preview');//попап превью картинки

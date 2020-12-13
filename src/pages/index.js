@@ -15,7 +15,6 @@ import {popupEditProfile,
     formUpdateAvatar,
     changeAvatarButton,
     popupRemoveCard,
-    userId,
     template,
     elements,
     popupOpenImage,
@@ -63,7 +62,7 @@ const likeCard = (id, card) => {//запрос на лайк/дизлайк ка
 const addCard = (data) => {//создание карточки 
     const card = new Card({    
         ...data, 
-        currentUserId: userId, 
+        currentUserId: userInfo.getUserId(), 
         template, 
         handleClickCard: () => {imagePopup.open(data)},
         handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
@@ -117,7 +116,7 @@ Promise.all ([//получение первичных данных с серве
     api.getCards(),
 ]).then((values) => {
     const [userData, initialCards] = values;
-    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserInfo(userData.name, userData.about, userData._id);
     userInfo.setUserAvatar(userData.avatar);
     const initialCardsReverse = initialCards.reverse();
     initialCardsReverse.forEach(element => {
