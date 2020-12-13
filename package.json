@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/romanlesnoy/mesto#readme",
   "dependencies": {
-    "core-js": "^3.7.0",
-    "jquery": "^3.5.1",
-    "rimraf": "^3.0.2"
+    "core-js": "^3.7.0"
   },
   "devDependencies": {
+    "jquery": "^3.5.1",
+    "rimraf": "^3.0.2",
     "@babel/core": "^7.12.7",
     "@babel/preset-env": "^7.12.7",
     "autoprefixer": "^10.0.2",

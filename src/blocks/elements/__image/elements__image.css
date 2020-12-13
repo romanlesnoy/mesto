@@ -2,5 +2,6 @@
     width: 100%;
     max-height: 282px;
     object-fit: cover;
-    flex-grow: 1;   
+    flex-grow: 1;  
+    cursor: pointer;
 }
