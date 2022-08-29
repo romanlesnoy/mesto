@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Project Mesto</title>
-    </head>
 
-    <body class="page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Mesto</title>
+</head>
 
-    <header class="header"> 
-        <img class="header__logo" src="<%=require('./images/icons/mesto-logo.svg')%>" alt="Логотип проект Место">
+<body class="page">
+
+    <header class="header">
+        <img class="header__logo" src="<%=require('./styles/icons/mesto-logo.svg')%>" alt="Логотип проект Место">
     </header>
-    
+
     <main>
         <section class="profile">
             <div class="profile__container">
@@ -39,7 +40,8 @@
         <form class="popup__form" name="update-avatar" novalidate>
             <button class="popup__close-btn" type="button"></button>
             <h3 class="popup__title">Обновить аватар</h3>
-            <input id="avatar-link" class="popup__input-field popup__input-avatar-link" type="url" name="avatarlink" placeholder="Ссылка на картинку" required autocomplete="off">
+            <input id="avatar-link" class="popup__input-field popup__input-avatar-link" type="url" name="avatarlink"
+                placeholder="Ссылка на картинку" required autocomplete="off">
             <span id="avatar-link-error" class="popup__input-error"></span>
             <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
@@ -49,9 +51,11 @@
         <form class="popup__form" name="profile-edit" novalidate>
             <button class="popup__close-btn" type="button" aria-label="Close"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <input  id="user-name" class="popup__input-field popup__input-name" type="text" name="name" placeholder="Имя" minlength="2" maxlength="40" required autocomplete="off">
+            <input id="user-name" class="popup__input-field popup__input-name" type="text" name="name" placeholder="Имя"
+                minlength="2" maxlength="40" required autocomplete="off">
             <span id="user-name-error" class="popup__input-error"></span>
-            <input id="about"  class="popup__input-field popup__input-about-me" type="text" name="about" placeholder="О себе" minlength="2" maxlength="200" required autocomplete="off">
+            <input id="about" class="popup__input-field popup__input-about-me" type="text" name="about"
+                placeholder="О себе" minlength="2" maxlength="200" required autocomplete="off">
             <span id="about-error" class="popup__input-error"></span>
             <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
@@ -61,9 +65,11 @@
         <form class="popup__form" name="add-card" novalidate>
             <button class="popup__close-btn" type="button" aria-label="Close"></button>
             <h3 class="popup__title">Новое место</h3>
-            <input id="card-name" class="popup__input-field popup__input-card-name" type="text" name="name" placeholder="Название" minlength="2" maxlength="30" required autocomplete="off">
+            <input id="card-name" class="popup__input-field popup__input-card-name" type="text" name="name"
+                placeholder="Название" minlength="2" maxlength="30" required autocomplete="off">
             <span id="card-name-error" class="popup__input-error"></span>
-            <input id="image-link" class="popup__input-field popup__input-image-link" type="url" name="link" placeholder="Ссылка на картинку" required autocomplete="off">
+            <input id="image-link" class="popup__input-field popup__input-image-link" type="url" name="link"
+                placeholder="Ссылка на картинку" required autocomplete="off">
             <span id="image-link-error" class="popup__input-error"></span>
             <button class="popup__save-btn" type="submit">Сохранить</button>
         </form>
@@ -98,5 +104,6 @@
             </div>
         </article>
     </template>
-    </body>
+</body>
+
 </html>
