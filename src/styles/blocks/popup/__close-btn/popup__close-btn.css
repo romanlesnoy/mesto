@@ -6,20 +6,19 @@
     height: 100%;
     max-width: 41px;
     max-height: 41px;
-    background: url('../../../images/icons/close_icon.svg') no-repeat center center;
-    border: none
+    background: url("../../../icons/close_icon.svg") no-repeat center center;
+    border: none;
 }
 
 .popup__close-btn:hover {
-    opacity: .6;
-    transition: .2s, ease-in-out, linear;
+    opacity: 0.6;
+    transition: 0.2s, ease-in-out, linear;
 }
 
-
 @media screen and (max-width: 768px) {
-    .popup__close-btn  {
+    .popup__close-btn {
         top: -40px;
         right: 0;
-        transform: scale(.64);
+        transform: scale(0.64);
     }
 }

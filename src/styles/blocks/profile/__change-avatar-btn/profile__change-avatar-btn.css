@@ -7,13 +7,13 @@
     position: absolute;
     top: 0;
     right: 0;
-    background:#000 url("../../../images/icons/pen.svg") no-repeat center center;
+    background: #000 url("../../../icons/pen.svg") no-repeat center center;
     background-size: 26px;
     opacity: 0;
 }
 
 .profile__change-avatar-btn:hover {
     opacity: 0.8;
-    transition: .2s, ease-in-out, linear;
+    transition: 0.2s, ease-in-out, linear;
     cursor: pointer;
-} 
+}
